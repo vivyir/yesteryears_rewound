@@ -6,6 +6,10 @@ The whole premise of the mod is just to gather as many plutonium fuel cells as p
 
 To play the mod add it to your world and choose the "Yesteryears Rewound" scenario which will start you off with the time machine, if you want to learn how to operate the machine you could either watch my demonstration of it on YouTube or read onwards for a guide, as comprehensively as I can write at least.
 
+## Installation
+
+Throw that "Yesteryears_Rewound" folder inside your mods, or use your launcher. And you'll be good to go!
+
 ## Video demo
 
 Link to be added
