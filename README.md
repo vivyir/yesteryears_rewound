@@ -12,7 +12,9 @@ Throw that "Yesteryears_Rewound" folder inside your mods, or use your launcher. 
 
 ## Video demo
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/aL8pyrdLZBA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Click the image to go to the YouTube video.
+
+[![YouTube](http://i.ytimg.com/vi/aL8pyrdLZBA/hqdefault.jpg)](https://www.youtube.com/watch?v=aL8pyrdLZBA)
 
 ## Using the mod
 
