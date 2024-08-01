@@ -1,0 +1,75 @@
+{
+  "id": "delurean_time_machine",
+  "type": "vehicle",
+  "name": "The DeLurean Time Machine",
+  "blueprint": [
+    "┌HH┐",
+    "┌──┐",
+    "+##+",
+    "┌──┐",
+    "└──┘"
+  ],
+  "parts": [
+    { "x": -2, "y": -1, "parts": [ "xlframe#sw", "halfboard#sw" ] },
+    {
+      "x": -2,
+      "y": 0,
+      "parts": [ "xlframe#horizontal_rear", "halfboard#horizontal_rear", "muffler_vent", "vp_plutonium_chamber" ]
+    },
+    {
+      "x": -2,
+      "y": 1,
+      "parts": [ "xlframe#horizontal_rear", "halfboard#horizontal_rear", "battery_car", "engine_v6", "alternator_car", "muffler_vent" ]
+    },
+    { "x": -2, "y": 2, "parts": [ "xlframe#se", "halfboard#se" ] },
+    { "x": -1, "y": -1, "parts": [ "xlframe#vertical_left", "windshield#wheel_left", "wheel_mount_medium", "wheel" ] },
+    { "x": -1, "y": 0, "parts": [ "xlframe#cross", "windshield#cover_left" ] },
+    { "x": -1, "y": 1, "parts": [ "xlframe#cross", "windshield#cover_right" ] },
+    {
+      "x": -1,
+      "y": 2,
+      "parts": [ "xlframe#vertical_right", "windshield#wheel_right", "wheel_mount_medium", "wheel" ]
+    },
+    { "x": 0, "y": -1, "parts": [ "xlframe#vertical_left", "door_gullwing#nw" ] },
+    {
+      "x": 0,
+      "y": 0,
+      "parts": [
+        "xlframe#cross",
+        "controls",
+        "integrated_heater_small",
+        "integrated_cooler",
+        "dashboard",
+        "vehicle_alarm",
+        "stereo",
+        "horn_car",
+        "roof",
+        "seat_leather#windshield_front",
+        "seatbelt",
+        "vp_time_circuits",
+        "vp_flux_capacitor"
+      ]
+    },
+    { "x": 0, "y": 1, "parts": [ "xlframe#cross", "roof", "seat_leather#windshield_front", "seatbelt" ] },
+    { "x": 0, "y": 2, "parts": [ "xlframe#vertical_right", "door_gullwing#ne" ] },
+    {
+      "x": 1,
+      "y": -1,
+      "parts": [ "xlframe#vertical_right", "windshield#wheel_left", "wheel_mount_medium_steerable", "wheel" ]
+    },
+    { "x": 1, "y": 0, "parts": [ "xlframe#cross", "windshield#cover_left" ] },
+    { "x": 1, "y": 1, "parts": [ "xlframe#cross", "windshield#cover_right" ] },
+    {
+      "x": 1,
+      "y": 2,
+      "parts": [ "xlframe#vertical_right", "windshield#wheel_right", "wheel_mount_medium_steerable", "wheel" ]
+    },
+    { "x": 2, "y": -1, "parts": [ "xlframe#nw", "headlight", "halfboard#nw" ] },
+    { "x": 2, "y": 0, "parts": [ "xlframe#horizontal_front", "trunk_sedan", { "part": "tank", "fuel": "gasoline" } ] },
+    { "x": 2, "y": 1, "parts": [ "xlframe#horizontal_front", "trunk_sedan" ] },
+    { "x": 2, "y": 2, "parts": [ "xlframe#ne", "headlight", "halfboard#ne" ] }
+  ],
+  "items": [
+    { "x": 0, "y": 1, "chance": 100, "items": [ "soldering_iron", "leather_journal" ] }
+  ]
+}

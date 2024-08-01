@@ -1,0 +1,84 @@
+[
+  {
+    "type": "effect_on_condition",
+    "id": "are_we_time_travelling_or_not_eoc_event_thing",
+    "eoc_type": "EVENT",
+    "required_event": "vehicle_moves",
+    "condition": {
+      "and": [
+        { "math": [ "_avatar_is_driving", "==", "1" ] },
+        { "math": [ "_avatar_remote_control", "!=", "1" ] },
+        { "math": [ "_velocity", ">", "8799" ] },
+        { "compare_string": [ "on", { "u_val": "flux_capacitor" } ] },
+        { "not": { "compare_string": [ "disengaged", { "u_val": "lever" } ] } }
+      ]
+    },
+    "effect": [
+      {
+        "if": { "compare_string": [ "future", { "u_val": "lever" } ] },
+        "then": [
+          {
+            "if": { "math": [ "u_flux_energy_turns", ">=", "u_time_to_travel" ] },
+            "then": [
+              { "math": [ "u_flux_energy_turns", "-=", "u_time_to_travel" ] },
+              { "math": [ "time('now')", "+=", "u_time_to_travel" ] },
+              { "set_string_var": "off", "target_var": { "u_val": "flux_capacitor" } },
+              { "set_string_var": "disengaged", "target_var": { "u_val": "lever" } },
+              {
+                "u_message": "A hue of colors from all across the visible light spectrum blends together to form an iridescent, opaque wall as you approach the speed required for opening the rift. Once the rift is opened the colors all quickly add up and turn completely white. The lever jerks back to the middle and the flux capacitor shuts down behind the passenger seat. The walls are fading to transparency. The rift is closing behind you.",
+                "popup": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "if": { "compare_string": [ "past", { "u_val": "lever" } ] },
+        "then": [
+          {
+            "if": { "math": [ "u_flux_energy_turns", ">=", "u_time_to_travel" ] },
+            "then": [
+              {
+                "if": {
+                  "and": [
+                    { "math": [ "abs( time('now') - u_time_to_travel )", ">=", "floor( 40.0 * 31449600.0 )" ] },
+                    { "math": [ "abs( time('now') - u_time_to_travel )", "<=", "floor( 41.0 * 31449600.0 )" ] }
+                  ]
+                },
+                "then": [ { "u_add_effect": "rewound_to_yesteryears", "duration": "PERMANENT" }, "u_die" ],
+                "else": [
+                  {
+                    "if": { "math": [ "time('now') - u_time_to_travel", ">=", "0" ] },
+                    "then": [
+                      { "math": [ "u_flux_energy_turns", "-=", "u_time_to_travel" ] },
+                      { "math": [ "time('now')", "-=", "u_time_to_travel" ] },
+                      { "set_string_var": "off", "target_var": { "u_val": "flux_capacitor" } },
+                      { "set_string_var": "disengaged", "target_var": { "u_val": "lever" } },
+                      {
+                        "u_message": "A hue of colors from all across the visible light spectrum blends together to form an iridescent, opaque wall as you approach the speed required for opening the rift. Once the rift is opened the colors all quickly subtract and turn completely black. The lever jerks forwards to the middle and the flux capacitor shuts down behind the passenger seat. The walls are fading to transparency. The rift is closing behind you, spatially.",
+                        "popup": true
+                      }
+                    ],
+                    "else": [
+                      {
+                        "if": { "math": [ "time('now') - u_time_to_travel", "<", "0" ] },
+                        "then": [
+                          { "set_string_var": "off", "target_var": { "u_val": "flux_capacitor" } },
+                          { "set_string_var": "disengaged", "target_var": { "u_val": "lever" } },
+                          {
+                            "u_message": "Your safety precautions kick in and stop you from travelling to the time before the Cataclysm but after where you came from. If you want to stop this from happening you need to go back 40 years ago and change the course of history, hopefully for the better.",
+                            "popup": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

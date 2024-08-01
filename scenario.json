@@ -1,0 +1,90 @@
+[
+  {
+    "type": "scenario",
+    "id": "yesteryears_rewound",
+    "description": "You're a time traveller from 40 years ago. You came to the future expecting society to be flourishing and plutonium to be sold on every corner drug store. But all of your expectations were crushed when you found out society crumbled. Now not only do you have to adjust to the now, but you also have to find enough plutonium to make it back and fix the timeline. The question is: will you want to go back? Or would you rather stay?",
+    "name": "Yesteryears Rewound",
+    "points": 0,
+    "start_name": "Stranded time traveller",
+    "allowed_locs": [ "sloc_road_far" ],
+    "professions": [ "time_traveller" ],
+    "flags": [ "LONE_START" ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "initialize_yr_eoc",
+    "effect": { "u_message": "test" }
+  },
+  {
+    "type": "start_location",
+    "id": "sloc_road_far",
+    "copy-from": "sloc_road",
+    "name": "Road on the outskirts",
+    "extend": { "city_distance": [ 0, -1 ] }
+  },
+  {
+    "type": "profession",
+    "id": "time_traveller",
+    "name": "Time Traveller",
+    "description": "You spent years in the lab, working hard and studying the sciences. All of your hard work resulted in your magnum opus, the time machine, built out of a DeLurean in your garage. Unfortunately the future wasn't as utopian as you expected it to be. Good luck surviving out here.",
+    "points": 0,
+    "skills": [
+      { "level": 4, "name": "mechanics" },
+      { "level": 4, "name": "chemistry" },
+      { "level": 4, "name": "electronics" },
+      { "level": 4, "name": "computer" }
+    ],
+    "proficiencies": [ "prof_intro_chemistry", "prof_intro_biology" ],
+    "vehicle": "delurean_time_machine",
+    "items": {
+      "both": {
+        "entries": [
+          { "item": "dress_shirt" },
+          { "item": "socks" },
+          { "item": "boots" },
+          { "item": "coat_lab" },
+          { "item": "gloves_rubber" },
+          { "item": "glasses_safety" },
+          { "item": "wristwatch" },
+          { "item": "pants", "variant": "pants_stone" },
+          { "group": "charged_cell_phone" }
+        ]
+      },
+      "male": { "entries": [ { "item": "briefs" } ] },
+      "female": { "entries": [ { "item": "bra" }, { "item": "panties" } ] }
+    }
+  },
+  {
+    "type": "end_screen",
+    "id": "rewound_to_the_yesteryears",
+    "priority": 3,
+    "picture_id": "ascii_portal_storm_win",
+    "condition": { "and": [ { "not": "u_is_alive" }, { "u_has_effect": "rewound_to_yesteryears" } ] },
+    "added_info": [
+      [ [ 6, 6 ], "You <color_pink>went back to the yesteryears!</color>" ],
+      [ [ 8, 7 ], "Good job, <u_name>." ],
+      [ [ 9, 15 ], "You slaughtered <total_kills> beings." ],
+      [ [ 4, 21 ], "It took you this long to leave: <time_survived>" ]
+    ]
+  },
+  {
+    "type": "effect_type",
+    "id": "rewound_to_yesteryears",
+    "name": [ "Rewound to the Yesteryears" ],
+    "desc": [ "You're not here anymore." ],
+    "rating": "good"
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "initialize_yesteryears_rewound",
+    "eoc_type": "EVENT",
+    "required_event": "game_start",
+    "effect": [
+      { "set_string_var": "off", "target_var": { "u_val": "flux_capacitor" } },
+      { "set_string_var": "disengaged", "target_var": { "u_val": "lever" } },
+      { "math": [ "u_time_to_travel", "=", "0" ] },
+      { "math": [ "u_flux_energy_turns", "=", "0" ] },
+      { "math": [ "u_plutonium_in_chamber", "=", "0" ] }
+    ]
+  }
+]

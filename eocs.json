@@ -1,0 +1,111 @@
+[
+  {
+    "type": "effect_on_condition",
+    "id": "debug_engage_time_travel",
+    "effect": [ { "math": [ "time('now')", "=", "time('now') - u_time_to_travel" ] } ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "flux_capacitor_eoc",
+    "effect": {
+      "run_eoc_selector": [
+        {
+          "id": "flux_capacitor_eoc_flux_energy",
+          "effect": [
+            { "math": [ "_years", "=", "floor( u_flux_energy_turns / 31449600.0 )" ] },
+            { "math": [ "_remainder_of_years", "=", "u_flux_energy_turns - ( _years * 31449600 )" ] },
+            { "math": [ "_days", "=", "floor( _remainder_of_years / 86400.0 ) + 1" ] },
+            { "math": [ "_remainder_of_days", "=", "_remainder_of_years - ( ( _days - 1 ) * 86400 )" ] },
+            { "math": [ "_hours", "=", "floor( _remainder_of_days / 3600.0 )" ] },
+            { "math": [ "_remainder_of_hours", "=", "_remainder_of_days - ( _hours * 3600 )" ] },
+            { "math": [ "_minutes", "=", "floor( _remainder_of_hours / 60.0 )" ] },
+            { "math": [ "_remainder_of_minutes", "=", "_remainder_of_hours - ( _minutes * 60 )" ] },
+            { "math": [ "_seconds", "=", "floor( _remainder_of_minutes )" ] },
+            {
+              "u_message": "You have enough flux energy for:\n<context_val:years> year(s), <context_val:days> day(s), <context_val:hours> hour(s), <context_val:minutes> minute(s), and <context_val:seconds> seconds.",
+              "popup": true
+            }
+          ]
+        },
+        {
+          "id": "flux_capacitor_eoc_power_on",
+          "condition": { "not": { "compare_string": [ "on", { "u_val": "flux_capacitor" } ] } },
+          "effect": { "set_string_var": "on", "target_var": { "u_val": "flux_capacitor" } }
+        },
+        {
+          "id": "flux_capacitor_eoc_power_off",
+          "condition": { "not": { "compare_string": [ "off", { "u_val": "flux_capacitor" } ] } },
+          "effect": { "set_string_var": "off", "target_var": { "u_val": "flux_capacitor" } }
+        }
+      ],
+      "names": [ "Check flux energy", "Power on", "Power off" ],
+      "title": "Interact with the flux capacitor",
+      "allow_cancel": true
+    }
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "time_circuit_eoc",
+    "effect": {
+      "run_eoc_selector": [ "read_time_circuit", "keypad_time_circuit" ],
+      "names": [ "Look at the displays", "Operate the time circuits" ],
+      "keys": [ "d", "k" ],
+      "title": "What would you like to do?",
+      "allow_cancel": true
+    }
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "read_time_circuit",
+    "effect": [
+      { "math": [ "_years", "=", "floor( time('now') / 31449600.0 ) + 1" ] },
+      { "math": [ "_remainder_of_years", "=", "time('now') - ( ( _years - 1 ) * 31449600 )" ] },
+      { "math": [ "_days", "=", "floor( _remainder_of_years / 86400.0 ) + 1" ] },
+      { "math": [ "_remainder_of_days", "=", "_remainder_of_years - ( ( _days - 1 ) * 86400 )" ] },
+      { "math": [ "_hours", "=", "floor( _remainder_of_days / 3600.0 )" ] },
+      { "math": [ "_remainder_of_hours", "=", "_remainder_of_days - ( _hours * 3600 )" ] },
+      { "math": [ "_minutes", "=", "floor( _remainder_of_hours / 60.0 )" ] },
+      { "math": [ "_remainder_of_minutes", "=", "_remainder_of_hours - ( _minutes * 60 )" ] },
+      { "math": [ "_seconds", "=", "floor( _remainder_of_minutes )" ] },
+      {
+        "set_string_var": "The current moment in time is (almost):\nYear <context_val:years> Post Cataclysm, Day <context_val:days>, Hour <context_val:hours>, Minute <context_val:minutes>, and Second <context_val:seconds>.",
+        "target_var": { "context_val": "message" },
+        "parse_tags": true
+      },
+      { "set_string_var": "<context_val:message>", "target_var": { "context_val": "message" }, "parse_tags": true },
+      {
+        "if": { "compare_string": [ "future", { "u_val": "lever" } ] },
+        "then": {
+          "set_string_var": "<context_val:message>\nThe lever is pushed forwards, with enough acceleration you will go to the future.",
+          "target_var": { "context_val": "message" },
+          "parse_tags": true
+        }
+      },
+      {
+        "if": { "compare_string": [ "past", { "u_val": "lever" } ] },
+        "then": {
+          "set_string_var": "<context_val:message>\nThe lever is pulled back, with enough acceleration you will go to the past.",
+          "target_var": { "context_val": "message" },
+          "parse_tags": true
+        }
+      },
+      {
+        "if": { "compare_string": [ "disengaged", { "u_val": "lever" } ] },
+        "then": {
+          "set_string_var": "<context_val:message>\nThe lever is in the middle and it wiggles, it is disengaged.",
+          "target_var": { "context_val": "message" },
+          "parse_tags": true
+        }
+      },
+      {
+        "if": { "compare_string": [ "yes", { "u_val": "display_txt_time_to_travel" } ] },
+        "then": {
+          "set_string_var": "<context_val:message>\nYou'll travel for <u_val:txt_time_to_travel>.",
+          "target_var": { "context_val": "message" },
+          "parse_tags": true
+        }
+      },
+      { "u_message": "<context_val:message>", "popup": true }
+    ]
+  }
+]

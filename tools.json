@@ -1,0 +1,53 @@
+[
+  {
+    "id": "pseudo_time_circuits",
+    "type": "TOOL",
+    "name": "time circuits",
+    "flags": [ "ZERO_WEIGHT", "TRADER_AVOID", "DEBUG_ONLY" ],
+    "description": "An assortment of circuits including a keypad and a display. The display shows different information and diagnostics such as the current time, destination, and last time you departed from.",
+    "weight": "1 g",
+    "volume": "1 ml",
+    "symbol": "[",
+    "color": "red",
+    "copy-from": "fake_item",
+    "use_action": {
+      "type": "effect_on_conditions",
+      "description": "Interact with time circuits.",
+      "effect_on_conditions": [ "time_circuit_eoc" ]
+    }
+  },
+  {
+    "id": "pseudo_flux_capacitor",
+    "type": "TOOL",
+    "name": "flux capacitor",
+    "flags": [ "ZERO_WEIGHT", "TRADER_AVOID", "DEBUG_ONLY" ],
+    "description": "The flux capacitor, which consists of a rectangular-shaped compartment with three flashing Geissler-style tubes arranged in a 'Y' configuration, is what makes time travel possible.",
+    "weight": "1 g",
+    "volume": "1 ml",
+    "symbol": "[",
+    "color": "red",
+    "copy-from": "fake_item",
+    "use_action": {
+      "type": "effect_on_conditions",
+      "description": "Interact with flux capacitor.",
+      "effect_on_conditions": [ "flux_capacitor_eoc" ]
+    }
+  },
+  {
+    "id": "pseudo_plutonium_chamber",
+    "type": "TOOL",
+    "name": "plutonium chamber",
+    "flags": [ "ZERO_WEIGHT", "TRADER_AVOID", "DEBUG_ONLY" ],
+    "description": "The plutonium chamber takes plutonium fuel cells and has the ability to convert them into electricity in the gigawatt magnitudes in order to use it for time travel. If you try to convert many of them at once it has a synergistic effect.",
+    "weight": "1 g",
+    "volume": "1 ml",
+    "symbol": "[",
+    "color": "red",
+    "copy-from": "fake_item",
+    "use_action": {
+      "type": "effect_on_conditions",
+      "description": "Interact with the plutonium chamber.",
+      "effect_on_conditions": [ "plutonium_chamber_eoc" ]
+    }
+  }
+]

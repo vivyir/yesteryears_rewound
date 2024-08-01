@@ -1,0 +1,75 @@
+[
+  {
+    "id": "door_gullwing",
+    "copy-from": "door",
+    "description": "A gull-wing door. Looks fancy.",
+    "durability": 220,
+    "name": { "str": "gull-wing door" },
+    "type": "vehicle_part",
+    "variants_bases": [ { "id": "full", "label": "Full" } ]
+  },
+  {
+    "type": "vehicle_part",
+    "id": "muffler_vent",
+    "name": { "str": "vent" },
+    "copy-from": "muffler",
+    "description": "A vent that somewhat reduce engine noise. Also vents heat from an installed vehicle cooler, or heats up the vehicle after time travel."
+  },
+  {
+    "type": "vehicle_part",
+    "looks_like": "controls",
+    "name": { "str": "plutonium chamber" },
+    "id": "vp_plutonium_chamber",
+    "categories": [ "utility" ],
+    "broken_color": "red",
+    "damage_modifier": 10,
+    "durability": 200,
+    "description": "The plutonium chamber is a circular chamber with wires running all around with heavy radiation-shielding material surrounding the slot where you can insert plutonium fuel cells. A sticky note is stuck to the little screen that displays diagnostics.",
+    "item": "pseudo_plutonium_chamber",
+    "requirements": {
+      "install": { "skills": [ [ "electronics", 100 ] ], "time": "365 d" },
+      "removal": { "skills": [ [ "electronics", 100 ] ], "time": "365 d" },
+      "repair": { "skills": [ [ "electronics", 4 ] ], "time": "30 m", "using": [ [ "soldering_standard", 8 ] ] }
+    },
+    "pseudo_tools": [ { "id": "pseudo_plutonium_chamber", "hotkey": "p" } ],
+    "variants": [ { "symbols": "$", "symbols_broken": "$" } ]
+  },
+  {
+    "type": "vehicle_part",
+    "looks_like": "controls",
+    "name": { "str": "flux capacitor" },
+    "id": "vp_flux_capacitor",
+    "categories": [ "utility" ],
+    "broken_color": "red",
+    "damage_modifier": 10,
+    "durability": 200,
+    "description": "The flux capacitor, which consists of a rectangular-shaped compartment with three flashing Geissler-style tubes arranged in a 'Y' configuration, is what makes time travel possible.",
+    "item": "pseudo_flux_capacitor",
+    "requirements": {
+      "install": { "skills": [ [ "electronics", 100 ] ], "time": "365 d" },
+      "removal": { "skills": [ [ "electronics", 100 ] ], "time": "365 d" },
+      "repair": { "skills": [ [ "electronics", 4 ] ], "time": "30 m", "using": [ [ "soldering_standard", 8 ] ] }
+    },
+    "pseudo_tools": [ { "id": "pseudo_flux_capacitor", "hotkey": "f" } ],
+    "variants": [ { "symbols": "$", "symbols_broken": "$" } ]
+  },
+  {
+    "type": "vehicle_part",
+    "looks_like": "controls",
+    "name": { "str": "time circuits" },
+    "id": "vp_time_circuits",
+    "categories": [ "utility" ],
+    "broken_color": "red",
+    "damage_modifier": 10,
+    "durability": 200,
+    "description": "An assortment of circuits including a keypad and a display. The display shows different information and diagnostics such as the current time, destination, and last time you departed from.",
+    "item": "pseudo_time_circuits",
+    "requirements": {
+      "install": { "skills": [ [ "electronics", 100 ] ], "time": "365 d" },
+      "removal": { "skills": [ [ "electronics", 100 ] ], "time": "365 d" },
+      "repair": { "skills": [ [ "electronics", 4 ] ], "time": "30 m", "using": [ [ "soldering_standard", 8 ] ] }
+    },
+    "pseudo_tools": [ { "id": "pseudo_time_circuits", "hotkey": "t" } ],
+    "variants": [ { "symbols": "$", "symbols_broken": "$" } ]
+  }
+]

@@ -1,0 +1,345 @@
+[
+  {
+    "type": "effect_on_condition",
+    "id": "enter_the_number_real",
+    "condition": { "expects_vars": [ "target_var" ] },
+    "effect": [
+      { "set_string_var": "", "target_var": { "var_val": "target_var" } },
+      {
+        "run_eoc_selector": [
+          {
+            "id": "enter_the_number_zero",
+            "effect": [
+              { "set_string_var": "<context_val:field>0", "target_var": { "context_val": "field" }, "parse_tags": true },
+              { "math": [ "_field", "=", "_field" ] },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_one",
+            "effect": [
+              { "set_string_var": "<context_val:field>1", "target_var": { "context_val": "field" }, "parse_tags": true },
+              { "math": [ "_field", "=", "_field" ] },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_two",
+            "effect": [
+              { "set_string_var": "<context_val:field>2", "target_var": { "context_val": "field" }, "parse_tags": true },
+              { "math": [ "_field", "=", "_field" ] },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_three",
+            "effect": [
+              { "set_string_var": "<context_val:field>3", "target_var": { "context_val": "field" }, "parse_tags": true },
+              { "math": [ "_field", "=", "_field" ] },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_four",
+            "effect": [
+              { "set_string_var": "<context_val:field>4", "target_var": { "context_val": "field" }, "parse_tags": true },
+              { "math": [ "_field", "=", "_field" ] },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_five",
+            "effect": [
+              { "set_string_var": "<context_val:field>5", "target_var": { "context_val": "field" }, "parse_tags": true },
+              { "math": [ "_field", "=", "_field" ] },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_six",
+            "effect": [
+              { "set_string_var": "<context_val:field>6", "target_var": { "context_val": "field" }, "parse_tags": true },
+              { "math": [ "_field", "=", "_field" ] },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_seven",
+            "effect": [
+              { "set_string_var": "<context_val:field>7", "target_var": { "context_val": "field" }, "parse_tags": true },
+              { "math": [ "_field", "=", "_field" ] },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_eight",
+            "effect": [
+              { "set_string_var": "<context_val:field>8", "target_var": { "context_val": "field" }, "parse_tags": true },
+              { "math": [ "_field", "=", "_field" ] },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_nine",
+            "effect": [
+              { "set_string_var": "<context_val:field>9", "target_var": { "context_val": "field" }, "parse_tags": true },
+              { "math": [ "_field", "=", "_field" ] },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_read",
+            "effect": [
+              { "u_message": "The keypad reads '<context_val:field>'.", "popup": true },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_clear",
+            "effect": [
+              { "set_string_var": "", "target_var": { "context_val": "field" } },
+              { "u_message": "Cleared the field.", "popup": true },
+              { "run_eocs": [ "enter_the_number_real" ] }
+            ]
+          },
+          {
+            "id": "enter_the_number_confirm",
+            "effect": [
+              { "u_message": "With the keypad reading '<context_val:field>' you press the confirm button.", "popup": true },
+              {
+                "set_string_var": "<context_val:field>",
+                "target_var": { "var_val": "target_var" },
+                "parse_tags": true
+              },
+              {
+                "if": { "compare_string": [ { "context_val": "field" }, "" ] },
+                "then": { "set_string_var": "0", "target_var": { "context_val": "field" } }
+              },
+              { "math": [ "v_target_var", "=", "_field" ] },
+              { "math": [ "_field", "=", "_field" ] }
+            ]
+          }
+        ],
+        "names": [
+          "Press 0",
+          "Press 1",
+          "Press 2",
+          "Press 3",
+          "Press 4",
+          "Press 5",
+          "Press 6",
+          "Press 7",
+          "Press 8",
+          "Press 9",
+          "Read",
+          "Clear",
+          "Confirm"
+        ],
+        "keys": [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "r", "-", "c" ],
+        "title": "Entering numbers (trailing zeroes will be ignored)"
+      }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "keypad_time_circuit",
+    "effect": [
+      {
+        "run_eoc_selector": [
+          "enter_days_keypad",
+          "enter_hours_keypad",
+          "enter_minutes_keypad",
+          "enter_seconds_keypad",
+          "push_lever_future",
+          "pull_lever_past",
+          "disengage_lever",
+          "keypad_clear_the_time",
+          "keypad_read_the_display",
+          "confirm_keypad"
+        ],
+        "names": [
+          "Enter days",
+          "Enter hours",
+          "Enter minutes",
+          "Enter seconds",
+          "Push lever forwards for the future",
+          "Pull lever for the past",
+          "Disengage the lever",
+          "Clear the entered time",
+          "Read the display",
+          "Confirm"
+        ],
+        "keys": [ "d", "h", "m", "s", "f", "p", ".", "-", "r", "c" ],
+        "title": "Operating time circuits (time entered will add to the current selection)",
+        "descriptions": [
+          "Enter days.",
+          "Enter hours.",
+          "Enter minutes.",
+          "Enter seconds.",
+          "Push lever forwards to go to the future by this duration.",
+          "Pull lever backwards to go to the past by this duration.",
+          "Put the lever in the middle to disengage it.",
+          "Clears the entered duration.",
+          "Read the sum of the duration.",
+          "Confirm selection."
+        ],
+        "hide_failing": true
+      }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "enter_days_keypad",
+    "effect": [
+      { "run_eoc_with": "enter_the_number_real", "variables": { "target_var": "u_tmptime" } },
+      { "run_eocs": [ "enter_days_keypad_s2" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "enter_days_keypad_s2",
+    "effect": [
+      { "math": [ "u_time_to_travel", "=", "u_time_to_travel + ( u_tmptime * 86400 )" ] },
+      { "math": [ "u_tmptime", "=", "0" ] },
+      { "run_eocs": [ "keypad_time_circuit" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "enter_hours_keypad",
+    "effect": [
+      { "run_eoc_with": "enter_the_number_real", "variables": { "target_var": "u_tmptime" } },
+      { "run_eocs": [ "enter_hours_keypad_s2" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "enter_hours_keypad_s2",
+    "effect": [
+      { "math": [ "u_time_to_travel", "=", "u_time_to_travel + ( u_tmptime * 3600 )" ] },
+      { "math": [ "u_tmptime", "=", "0" ] },
+      { "run_eocs": [ "keypad_time_circuit" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "enter_minutes_keypad",
+    "effect": [
+      { "run_eoc_with": "enter_the_number_real", "variables": { "target_var": "u_tmptime" } },
+      { "run_eocs": [ "enter_minutes_keypad_s2" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "enter_minutes_keypad_s2",
+    "effect": [
+      { "math": [ "u_time_to_travel", "=", "u_time_to_travel + ( u_tmptime * 60 )" ] },
+      { "math": [ "u_tmptime", "=", "0" ] },
+      { "run_eocs": [ "keypad_time_circuit" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "enter_seconds_keypad",
+    "effect": [
+      { "run_eoc_with": "enter_the_number_real", "variables": { "target_var": "u_tmptime" } },
+      { "run_eocs": [ "enter_seconds_keypad_s2" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "enter_seconds_keypad_s2",
+    "effect": [
+      { "math": [ "u_time_to_travel", "=", "u_time_to_travel + u_tmptime" ] },
+      { "math": [ "u_tmptime", "=", "0" ] },
+      { "run_eocs": [ "keypad_time_circuit" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "push_lever_future",
+    "condition": { "not": { "compare_string": [ { "u_val": "lever" }, "future" ] } },
+    "effect": [
+      { "u_message": "You push the lever forwards until it clicks.", "popup": true },
+      { "set_string_var": "future", "target_var": { "u_val": "lever" } },
+      { "run_eocs": [ "keypad_time_circuit" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "disengage_lever",
+    "condition": { "not": { "compare_string": [ { "u_val": "lever" }, "disengaged" ] } },
+    "effect": [
+      { "u_message": "You bring the lever to the middle and wiggle it around to make sure it's disengaged.", "popup": true },
+      { "set_string_var": "disengaged", "target_var": { "u_val": "lever" } },
+      { "run_eocs": [ "keypad_time_circuit" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "pull_lever_past",
+    "condition": { "not": { "compare_string": [ { "u_val": "lever" }, "past" ] } },
+    "effect": [
+      { "u_message": "With a tactile click, you pull the lever back.", "popup": true },
+      { "set_string_var": "past", "target_var": { "u_val": "lever" } },
+      { "run_eocs": [ "keypad_time_circuit" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "confirm_keypad",
+    "effect": [
+      {
+        "if": { "u_query": "Are you sure? (Read the display first)", "default": false },
+        "then": [
+          { "math": [ "_years", "=", "floor( u_time_to_travel / 31449600.0 )" ] },
+          { "math": [ "_remainder_of_years", "=", "u_time_to_travel - ( _years * 31449600 )" ] },
+          { "math": [ "_days", "=", "floor( _remainder_of_years / 86400.0 )" ] },
+          { "math": [ "_remainder_of_days", "=", "_remainder_of_years - ( _days * 86400 )" ] },
+          { "math": [ "_hours", "=", "floor( _remainder_of_days / 3600.0 )" ] },
+          { "math": [ "_remainder_of_hours", "=", "_remainder_of_days - ( _hours * 3600 )" ] },
+          { "math": [ "_minutes", "=", "floor( _remainder_of_hours / 60.0 )" ] },
+          { "math": [ "_remainder_of_minutes", "=", "_remainder_of_hours - ( _minutes * 60 )" ] },
+          { "math": [ "_seconds", "=", "floor( _remainder_of_minutes )" ] },
+          { "set_string_var": "yes", "target_var": { "u_val": "display_txt_time_to_travel" } },
+          {
+            "set_string_var": "<context_val:years> year(s), <context_val:days> day(s), <context_val:hours> hour(s), <context_val:minutes> minute(s), and <context_val:seconds> second(s)",
+            "target_var": { "u_val": "txt_time_to_travel" },
+            "parse_tags": true
+          },
+          { "run_eocs": [ "time_circuit_eoc" ] }
+        ],
+        "else": [ { "u_message": "Canceled", "popup": true }, { "run_eocs": [ "keypad_time_circuit" ] } ]
+      }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "keypad_clear_the_time",
+    "effect": [
+      { "math": [ "u_time_to_travel", "=", "0" ] },
+      { "u_message": "Cleared the time.", "popup": true },
+      { "run_eocs": [ "keypad_time_circuit" ] }
+    ]
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "keypad_read_the_display",
+    "effect": [
+      { "math": [ "_years", "=", "floor( u_time_to_travel / 31449600.0 )" ] },
+      { "math": [ "_remainder_of_years", "=", "u_time_to_travel - ( _years * 31449600 )" ] },
+      { "math": [ "_days", "=", "floor( _remainder_of_years / 86400.0 )" ] },
+      { "math": [ "_remainder_of_days", "=", "_remainder_of_years - ( _days * 86400 )" ] },
+      { "math": [ "_hours", "=", "floor( _remainder_of_days / 3600.0 )" ] },
+      { "math": [ "_remainder_of_hours", "=", "_remainder_of_days - ( _hours * 3600 )" ] },
+      { "math": [ "_minutes", "=", "floor( _remainder_of_hours / 60.0 )" ] },
+      { "math": [ "_remainder_of_minutes", "=", "_remainder_of_hours - ( _minutes * 60 )" ] },
+      { "math": [ "_seconds", "=", "floor( _remainder_of_minutes )" ] },
+      {
+        "u_message": "The displays read:\n<context_val:years> year(s), <context_val:days> day(s), <context_val:hours> hour(s), <context_val:minutes> minute(s), and <context_val:seconds> second(s).",
+        "popup": true
+      },
+      { "run_eocs": [ "keypad_time_circuit" ] }
+    ]
+  }
+]

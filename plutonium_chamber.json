@@ -1,0 +1,135 @@
+[
+  {
+    "type": "effect_on_condition",
+    "id": "plutonium_chamber_eoc",
+    "effect": {
+      "run_eoc_selector": [
+        {
+          "id": "read_plutonium_chamber_sticky",
+          "effect": {
+            "u_message": "Every plutonium fuel cell should technically convert to only 1 month's worth of flux energy for time travel, however a synergistic effect has been observed when multiple plutonium fuel cells are harnessed at once. For example, two plutonium fuel cells will give you 2 months and a little bit extra, bump that up to 30 and the 31st plutonium fuel cell will add about 14.8 months instead, which is astounding!\nThe closest formula i've come up with for approximating this growth is: x^(x/39.5)\nWhere x is the amount of fuel cells and y when graphed shows the amount of months that will be added.\nAround 42 plutonium fuel cells should be enough to travel 40 years through space-time.",
+            "popup": true
+          }
+        },
+        {
+          "id": "check_plutonium_chamber_status",
+          "effect": [
+            {
+              "if": { "math": [ "u_plutonium_in_chamber", ">", "0" ] },
+              "then": [
+                { "math": [ "u_month_sum", "=", "0" ] },
+                {
+                  "run_eoc_with": "eoc_sum_synergy_cells",
+                  "variables": { "i": "1", "to": { "u_val": "plutonium_in_chamber" }, "target_var": "u_month_sum" }
+                },
+                { "math": [ "_turns_of_time", "=", "floor( u_month_sum * 2592000.0 )" ] },
+                { "math": [ "_years", "=", "floor( _turns_of_time / 31449600.0 )" ] },
+                { "math": [ "_remainder_of_years", "=", "_turns_of_time - ( _years * 31449600 )" ] },
+                { "math": [ "_days", "=", "floor( _remainder_of_years / 86400.0 ) + 1" ] },
+                { "math": [ "_remainder_of_days", "=", "_remainder_of_years - ( ( _days - 1 ) * 86400 )" ] },
+                { "math": [ "_hours", "=", "floor( _remainder_of_days / 3600.0 )" ] },
+                { "math": [ "_remainder_of_hours", "=", "_remainder_of_days - ( _hours * 3600 )" ] },
+                { "math": [ "_minutes", "=", "floor( _remainder_of_hours / 60.0 )" ] },
+                { "math": [ "_remainder_of_minutes", "=", "_remainder_of_hours - ( _minutes * 60 )" ] },
+                { "math": [ "_seconds", "=", "floor( _remainder_of_minutes )" ] },
+                {
+                  "u_message": "Looking at the diagnostics you can see that there are currently <u_val:plutonium_in_chamber> plutonium fuel cell(s) inside the chamber.\nThey should give you exactly <u_val:plutonium_in_chamber> month(s) of time travel, but if there are more than one, because of the synergistic properties they'll actually give you more:\n<context_val:years> year(s), <context_val:days> day(s), <context_val:hours> hour(s), <context_val:minutes> minute(s), and <context_val:seconds> seconds.",
+                  "popup": true
+                }
+              ],
+              "else": { "u_message": "There aren't any plutonium fuel cells in the chamber.", "popup": true }
+            }
+          ]
+        },
+        {
+          "id": "put_in_a_fuel_cell_plutonium_chamber",
+          "effect": [
+            {
+              "u_run_inv_eocs": "manual_mult",
+              "search_data": [ { "id": "plut_cell" } ],
+              "true_eocs": [
+                {
+                  "id": "plutonium_fuel_cell_is_in_hand",
+                  "effect": [
+                    { "math": [ "_count", "=", "n_val('count')" ] },
+                    { "math": [ "u_plutonium_in_chamber", "+=", "n_val('count')" ] },
+                    "npc_die",
+                    { "u_message": "Inserted <context_val:count> plutonium fuel cell(s)." }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "take_out_a_fuel_cell_plutonium_chamber",
+          "effect": [
+            {
+              "u_message": "There are <u_val:plutonium_in_chamber> plutonium fuel cell(s) in the chamber right now.",
+              "popup": true
+            },
+            { "math": [ "_out", "=", "num_input('How many do you want to take out?', u_plutonium_in_chamber)" ] },
+            {
+              "if": { "and": [ { "math": [ "_out", "<=", "u_plutonium_in_chamber" ] }, { "math": [ "_out", ">", "0" ] } ] },
+              "then": [
+                { "u_message": "You put the cell(s) down at your feet.", "popup": true },
+                { "map_spawn_item": "plut_cell", "count": { "context_val": "out" } },
+                { "math": [ "u_plutonium_in_chamber", "-=", "_out" ] }
+              ],
+              "else": {
+                "u_message": "Please enter a natural number less than or equal to the fuel cells currently inside. (not zero nor negative)"
+              }
+            }
+          ]
+        },
+        {
+          "id": "harness_cells_plutonium_chamber",
+          "condition": { "math": [ "u_plutonium_in_chamber", ">", "0" ] },
+          "effect": [
+            { "math": [ "u_month_sum", "=", "0" ] },
+            {
+              "run_eoc_with": "eoc_sum_synergy_cells",
+              "variables": { "i": "1", "to": { "u_val": "plutonium_in_chamber" }, "target_var": "u_month_sum" }
+            },
+            { "math": [ "_turns_of_time", "=", "floor( u_month_sum * 2592000.0 )" ] },
+            { "math": [ "_years", "=", "floor( _turns_of_time / 31449600.0 )" ] },
+            { "math": [ "_remainder_of_years", "=", "_turns_of_time - ( _years * 31449600 )" ] },
+            { "math": [ "_days", "=", "floor( _remainder_of_years / 86400.0 ) + 1" ] },
+            { "math": [ "_remainder_of_days", "=", "_remainder_of_years - ( ( _days - 1 ) * 86400 )" ] },
+            { "math": [ "_hours", "=", "floor( _remainder_of_days / 3600.0 )" ] },
+            { "math": [ "_remainder_of_hours", "=", "_remainder_of_days - ( _hours * 3600 )" ] },
+            { "math": [ "_minutes", "=", "floor( _remainder_of_hours / 60.0 )" ] },
+            { "math": [ "_remainder_of_minutes", "=", "_remainder_of_hours - ( _minutes * 60 )" ] },
+            { "math": [ "_seconds", "=", "floor( _remainder_of_minutes )" ] },
+            {
+              "u_message": "Looking at the diagnostics you can see that there are currently <u_val:plutonium_in_chamber> plutonium fuel cell(s) inside the chamber.\nYou harnessed all of them and the shells eject out from below the car, flux energy has been transferred to the flux capacitor:\n<context_val:years> year(s), <context_val:days> day(s), <context_val:hours> hour(s), <context_val:minutes> minute(s), and <context_val:seconds> seconds.",
+              "popup": true
+            },
+            { "math": [ "u_flux_energy_turns", "+=", "_turns_of_time" ] },
+            { "math": [ "u_plutonium_in_chamber", "=", "0" ] }
+          ]
+        }
+      ],
+      "names": [
+        "Read sticky note",
+        "Check chamber status",
+        "Slot in plutonium fuel cell(s)",
+        "Take out plutonium fuel cell(s)",
+        "Harness fuel cell(s)"
+      ],
+      "keys": [ "n", "s", "f", "t", "h" ],
+      "title": "What would you like to do?",
+      "allow_cancel": true
+    }
+  },
+  {
+    "type": "effect_on_condition",
+    "id": "eoc_sum_synergy_cells",
+    "condition": { "and": [ { "expects_vars": [ "i", "to", "target_var" ] }, { "math": [ "_i", "<=", "_to" ] } ] },
+    "effect": [
+      { "math": [ "v_target_var", "+=", "_i ^ ( _i / 39.5 )" ] },
+      { "math": [ "_i", "++" ] },
+      { "run_eocs": "eoc_sum_synergy_cells" }
+    ]
+  }
+]

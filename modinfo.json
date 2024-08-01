@@ -1,0 +1,11 @@
+[
+  {
+    "type": "MOD_INFO",
+    "id": "yesteryears_rewound",
+    "name": "Yesteryears Rewound",
+    "authors": [ "ladyViviaen" ],
+    "description": "Time traveller moved a chair before initiating, now everything's gone awry. You've gotta fix this!",
+    "category": "content",
+    "dependencies": [ "dda" ]
+  }
+]
