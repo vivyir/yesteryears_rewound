@@ -12,7 +12,7 @@ Throw that "Yesteryears_Rewound" folder inside your mods, or use your launcher. 
 
 ## Video demo
 
-[<img src="https://i.ytimg.com/vi/aL8pyrdLZBA/maxresdefault.jpg" width="50%">(https://youtu.be/aL8pyrdLZBA)]
+[![C:DDA Yesteryears Rewound (Ep. 0) | Time travel!](https://img.youtube.com/vi/aL8pyrdLZBA/0.jpg)](https://www.youtube.com/watch?v=aL8pyrdLZBA)
 
 ## Using the mod
 
