@@ -12,7 +12,7 @@ Throw that "Yesteryears_Rewound" folder inside your mods, or use your launcher. 
 
 ## Video demo
 
-Link to be added
+[<img src="https://i.ytimg.com/vi/aL8pyrdLZBA/maxresdefault.jpg" width="50%">(https://youtu.be/aL8pyrdLZBA)]
 
 ## Using the mod
 
